@@ -1,8 +1,9 @@
-package test;
+package day01;
 
 import java.io.InputStream;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
@@ -21,7 +22,15 @@ public class JdbcTools {
 		return (Connection) DriverManager.getConnection(jdbcurl, user, password);
 	}
 	
-	public static void jdbcClose(Statement statement,Connection conn) throws Exception{
+	public static void jdbcClose(ResultSet resultSet,Statement statement,Connection conn) throws Exception{
+		if (resultSet!=null) {
+		     try {
+		    	 resultSet.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		 }
 		if (statement!=null) {
 	     try {
 			statement.close();
@@ -29,6 +38,7 @@ public class JdbcTools {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+	     }
 	     if (conn!=null) {
 	    	 try {
 	 			conn.close();
@@ -37,7 +47,8 @@ public class JdbcTools {
 	 			e.printStackTrace();
 	 		}
 		}
-		}
-	}
+		
+	  }
+	
 	
 }

@@ -1,4 +1,4 @@
-package test;
+package day01;
 
 import static org.junit.Assert.*;
 
@@ -92,7 +92,7 @@ public class JdbcTest {
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally{
-		   JdbcTools.jdbcClose(statement, conn);	
+		   JdbcTools.jdbcClose(null,statement, conn);	
 		 }
 	 } 
     
